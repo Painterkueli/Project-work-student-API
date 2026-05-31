@@ -12,9 +12,9 @@ app.use((req,res,next)=>{
 
 //Array of students
 let students = [
-    {ID: 1, name: "Dellor Eric", gender: "Male", Age: 25, email: "Delloreric@gmail.com", course: "Computer Science", uniqueID: "26CS001"},
-    {ID: 2, name: "Kueli Erica", gender: "Female", Age: 30, email: "kuelierica@gmail.com", course: "Biology", uniqueID: "26BI001"},
-    {ID: 3, name: "Gah Herny", gender: "Male", Age: 26, email: "gahhenry@gmail.com", course: "Chemistry", uniqueID: "26CH001"}
+    {ID: 1, name: "Dellor Eric", gender: "Male", Age: 25, email: "Delloreric@gmail.com", course: "Computer Science", level: 200, uniqueID: "26CS001"},
+    {ID: 2, name: "Kueli Erica", gender: "Female", Age: 30, email: "kuelierica@gmail.com", course: "Biology", level: 200, uniqueID: "26BI001"},
+    {ID: 3, name: "Gah Herny", gender: "Male", Age: 26, email: "gahhenry@gmail.com", course: "Chemistry", level: 200, uniqueID: "26CH001"}
 ];
 //Array of course codes
 const courseCodes = [{computer_science: "26CS"}, {biology: "26BI"}, {chemistry: "26CH"}, {mathematics: "26MA"}, {physics: "26PH"}];
@@ -35,7 +35,7 @@ app.get('/view', (req,res) => {
         return {
             ID: s.ID,
             name: s.name,
-            course: s.course
+            course: s.course,
         };
     });
     res.status(200).json(studentInfo);
@@ -53,6 +53,8 @@ app.get('/view/:id', (req,res) => {
 app.post('/add', (req,res) => {
     let course_in = req.body.course;
     const addStudent = {ID:students.length + 1, ...req.body, uniqueID: unique_num(course_in)};
+    addStudent.name = addStudent.name.trim();
+    if(typeof addStudent.age !== "number" || typeof addStudent.level !== "number") return res.status(400).json({"message": "Age and level must be numbers"});
     if(addStudent.name === undefined || addStudent.email === undefined || addStudent.course === undefined || addStudent.gender === undefined) return res.status(400).json({"message": "Fill all the fields"});
     if (!(addStudent.email.includes('@') && addStudent.email.includes('.'))) return res.status(400).json({"message": "Email must contains @ and fullstop"});
     //Making sure we have only two genders
