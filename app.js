@@ -92,5 +92,11 @@ res.status(204).send();
 
 const PORT = process.env.PORT || 3009;
 app.listen(PORT, () => {
-    console.log(`Server running on ${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 })
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({error: err.message});
+});
