@@ -16,8 +16,8 @@ let students = [
     {ID: 2, name: "James Emerald", gender: "Female", Age: 30, email: "emeraldjames581@gmail.com", course: "Biology", level: 200, uniqueID: "26BI001"},
     {ID: 3, name: "Kueli Victor", gender: "Male", Age: 26, email: "painterkueli23@gmail.com", course: "Chemistry", level: 200, uniqueID: "26CH001"},
     {ID: 4, name: "Hope Chibondwe", gender: "Male", Age: 26, email: "chibondwehope@gmail.com", course: "Chemistry", level: 100, uniqueID: "26CH002"},
-    {ID: 5, name: "Okoye Chijioke Henry", gender: "Male", Age: 21, email: "officialceho@gmail.com", course: "Physics", level: 100, uniqueID: "26CH002"},
-    {ID: 6, name: "Okoye Chijioke Henry", gender: "Male", Age: 18, email: "@gmail.com", course: "Mathematics", level: 100, uniqueID: "26CH002"}
+    {ID: 5, name: "Okoye Chijioke Henry", gender: "Male", Age: 21, email: "officialceho@gmail.com", course: "Physics", level: 100, uniqueID: "26PH001"},
+    {ID: 6, name: "Eiporn", gender: "Male", Age: 18, email: "eiporn@gmail.com", course: "Mathematics", level: 100, uniqueID: "26MA001"}
 ];
 //Array of course codes
 const courseCodes = [{computer_science: "26CS"}, {biology: "26BI"}, {chemistry: "26CH"}, {mathematics: "26MA"}, {physics: "26PH"}];
