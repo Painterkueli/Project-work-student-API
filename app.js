@@ -31,7 +31,14 @@ function unique_num(course_in){
 }
 //View students record
 app.get('/view', (req,res) => {
-    res.status(200).json(students);
+    const studentInfo = students.map((s) =>{
+        return {
+            ID: s.ID,
+            name: s.name,
+            course: s.course
+        };
+    });
+    res.status(200).json(studentInfo);
 })
 
 //For displaying a single student record
