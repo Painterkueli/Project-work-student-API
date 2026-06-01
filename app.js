@@ -21,7 +21,7 @@ let students = [
 ];
 //Array of course codes
 const courseCodes = [{computer_science: "26CS"}, {biology: "26BI"}, {chemistry: "26CH"}, {mathematics: "26MA"}, {physics: "26PH"}];
-//Function to generate unique ID for each student
+//Function to generate a unique ID for each student
 function unique_num(course_in){
     if(!course_in){return "Course is not specified";}
     course_edit = course_in.toLowerCase().trim();
@@ -32,13 +32,14 @@ function unique_num(course_in){
     let unique_id = code + "00" + (course_std.length + 1).toString();
     return unique_id;
 }
-//View students record
+//View the student's record
 app.get('/view', (req,res) => {
     const studentInfo = students.map((s) =>{
         return {
             ID: s.ID,
             name: s.name,
             course: s.course,
+            level: s.level
         };
     });
     res.status(200).json(studentInfo);
@@ -92,7 +93,7 @@ app.put('/edit/:id', (req,res) => {
     res.status(200).json(updateStudent);
 })
 
-//Updating just part of one student reocrd
+//Updating just part of one student record
 app.patch('/edit/:id', (req,res) => {
     const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
     if(findID === -1) return res.status(400).json({"message": "student Not found"});
