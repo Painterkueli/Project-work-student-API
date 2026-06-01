@@ -4,6 +4,7 @@ const app = express();
 
 //Body middleware
 app.use(express.json());
+
 //Logger middleware
 app.use((req,res,next)=>{
     console.log(`A ${req.method} request for ${req.url} on ${new Date()}`);
@@ -19,9 +20,11 @@ let students = [
     {ID: 5, name: "Okoye Chijioke Henry", gender: "Male", Age: 21, email: "officialceho@gmail.com", course: "Physics", level: 100, uniqueID: "26PH001"},
     {ID: 6, name: "Eiporn", gender: "Male", Age: 18, email: "eiporn@gmail.com", course: "Mathematics", level: 100, uniqueID: "26MA001"}
 ];
+
 //Array of course codes
 const courseCodes = [{computer_science: "26CS"}, {biology: "26BI"}, {chemistry: "26CH"}, {mathematics: "26MA"}, {physics: "26PH"}];
-//Function to generate unique ID for each student
+
+//Function to generate a unique ID for each student
 function unique_num(course_in){
     if(!course_in){return "Course is not specified";}
     course_edit = course_in.toLowerCase().trim();
@@ -32,13 +35,15 @@ function unique_num(course_in){
     let unique_id = code + "00" + (course_std.length + 1).toString();
     return unique_id;
 }
-//View students record
+
+//View the student's record
 app.get('/view', (req,res) => {
     const studentInfo = students.map((s) =>{
         return {
             ID: s.ID,
             name: s.name,
             course: s.course,
+            level: s.level
         };
     });
     res.status(200).json(studentInfo);
@@ -85,16 +90,16 @@ app.post('/add', (req,res) => {
 
 //Updating the full record of one student 
 app.put('/edit/:id', (req,res) => {
-    const findID = students.findIndex((t) => t.uniqueID === req.params.id);
+    const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
     if (findID === -1) return res.status(400).json({"message": "ID not found"});
     const updateStudent = {ID:students[findID].ID, ...req.body};
     students[findID] = updateStudent;
     res.status(200).json(updateStudent);
 })
 
-//Updating just part of one student reocrd
+//Updating just part of one student record
 app.patch('/edit/:id', (req,res) => {
-    const findID = students.findIndex((t) => t.uniqueID === req.params.id);
+    const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
     if(findID === -1) return res.status(400).json({"message": "student Not found"});
     Object.assign(students[findID],req.body);
     res.status(200).json(students[findID]);
@@ -102,9 +107,9 @@ app.patch('/edit/:id', (req,res) => {
 
 //Delete student
 app.delete('/delete/:id', (req,res) => {
-const Id = req.params.id;
+const Id = parseInt(req.params.id);
 const initialLen = students.length;
-students = students.filter((t) => t.uniqueID === Id);
+students = students.filter((t) => t.ID === Id);
 if (students.length !== initialLen) return res.status(404).json({error: "Not found"});
 res.status(204).send();
 })
