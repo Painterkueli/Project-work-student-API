@@ -91,7 +91,7 @@ app.post('/add', (req,res) => {
 //Updating the full record of one student 
 app.put('/edit/:id', (req,res) => {
     const uq_id = req.params.id;
-    if(typeof uq_id !=== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
+    if(typeof uq_id !== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
     const findID = students.findIndex((t) => t.uniqueID === uq_id);
     if (findID === -1) return res.status(400).json({"message": "ID not found"});
     const updateStudent = {ID:students[findID].ID, ...req.body};
@@ -102,7 +102,7 @@ app.put('/edit/:id', (req,res) => {
 //Updating just part of one student record
 app.patch('/edit/:id', (req,res) => {
     const uq_id = req.params.id;
-    if(typeof uq_id !=== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
+    if(typeof uq_id !== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
     const findID = students.findIndex((t) => t.uniqueID === uq_id);
     if(findID === -1) return res.status(400).json({"message": "student Not found"});
     Object.assign(students[findID],req.body);
