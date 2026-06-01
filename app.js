@@ -4,6 +4,7 @@ const app = express();
 
 //Body middleware
 app.use(express.json());
+
 //Logger middleware
 app.use((req,res,next)=>{
     console.log(`A ${req.method} request for ${req.url} on ${new Date()}`);
@@ -19,8 +20,10 @@ let students = [
     {ID: 5, name: "Okoye Chijioke Henry", gender: "Male", Age: 21, email: "officialceho@gmail.com", course: "Physics", level: 100, uniqueID: "26PH001"},
     {ID: 6, name: "Eiporn", gender: "Male", Age: 18, email: "eiporn@gmail.com", course: "Mathematics", level: 100, uniqueID: "26MA001"}
 ];
+
 //Array of course codes
 const courseCodes = [{computer_science: "26CS"}, {biology: "26BI"}, {chemistry: "26CH"}, {mathematics: "26MA"}, {physics: "26PH"}];
+
 //Function to generate a unique ID for each student
 function unique_num(course_in){
     if(!course_in){return "Course is not specified";}
@@ -32,6 +35,7 @@ function unique_num(course_in){
     let unique_id = code + "00" + (course_std.length + 1).toString();
     return unique_id;
 }
+
 //View the student's record
 app.get('/view', (req,res) => {
     const studentInfo = students.map((s) =>{
@@ -52,6 +56,7 @@ app.get('/view/:id', (req,res) => {
     res.status(200).json(student);
 
 })
+
 //Route to view students in a Course
 app.get("/course/:course", (req,res) => {
     const course = req.params.course;
@@ -67,6 +72,7 @@ app.get("/course/:course", (req,res) => {
     });
     res.status(200).json(selected_info);
 });
+
 //Add new student
 app.post('/add', (req,res) => {
     let course_in = req.body.course;
@@ -81,33 +87,43 @@ app.post('/add', (req,res) => {
     students.push(addStudent);
     res.status(201).json(addStudent);
 })
+
 //Updating the full record of one student 
 app.put('/edit/:id', (req,res) => {
-    const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
+    const uq_id = req.params.id;
+    if(typeof uq_id !=== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
+    const findID = students.findIndex((t) => t.uniqueID === uq_id);
     if (findID === -1) return res.status(400).json({"message": "ID not found"});
     const updateStudent = {ID:students[findID].ID, ...req.body};
     students[findID] = updateStudent;
     res.status(200).json(updateStudent);
 })
+
 //Updating just part of one student record
 app.patch('/edit/:id', (req,res) => {
-    const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
+    const uq_id = req.params.id;
+    if(typeof uq_id !=== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
+    const findID = students.findIndex((t) => t.uniqueID === uq_id);
     if(findID === -1) return res.status(400).json({"message": "student Not found"});
     Object.assign(students[findID],req.body);
     res.status(200).json(students[findID]);
 })
+
 //Delete student
 app.delete('/delete/:id', (req,res) => {
-const Id = parseInt(req.params.id);
+const uq_id = req.params.id;
 const initialLen = students.length;
-students = students.filter((t) => t.ID === Id);
+students = students.filter((t) => t.uniqueID === uq_id);
 if (students.length !== initialLen) return res.status(404).json({error: "Not found"});
 res.status(204).send();
 })
+
+//Listen middleware on port
 const PORT = process.env.PORT || 3009;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 })
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
