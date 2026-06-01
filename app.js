@@ -18,7 +18,7 @@ let students = [
     {ID: 3, name: "Kueli Victor", gender: "Male", Age: 26, email: "painterkueli23@gmail.com", course: "Chemistry", level: 200, uniqueID: "26CH001"},
     {ID: 4, name: "Hope Chibondwe", gender: "Male", Age: 26, email: "chibondwehope@gmail.com", course: "Chemistry", level: 100, uniqueID: "26CH002"},
     {ID: 5, name: "Okoye Chijioke Henry", gender: "Male", Age: 21, email: "officialceho@gmail.com", course: "Physics", level: 100, uniqueID: "26PH001"},
-    {ID: 6, name: "Eiporn", gender: "Male", Age: 18, email: "eiporn@gmail.com", course: "Mathematics", level: 100, uniqueID: "26MA001"}
+    {ID: 6, name: "Eiporn", gender: "Female", Age: 18, email: "eiporn@gmail.com", course: "Mathematics", level: 100, uniqueID: "26MA001"}
 ];
 
 //Array of course codes
@@ -29,10 +29,13 @@ function unique_num(course_in){
     if(!course_in){return "Course is not specified";}
     course_edit = course_in.toLowerCase().trim();
     course_edit = course_edit.replace(" ", "_");
-    const course_std = students.filter((s) => s.course === course_in);
+    const course_std = students.filter((s) => s.course.toLowerCase() === course_in.toLowerCase());
     const code = Object.values(courseCodes.find(s => Object.keys(s).toString() === course_edit)).toString();
     if(!code){return "Course is not available";}
-    let unique_id = code + "00" + (course_std.length + 1).toString();
+    if(course_std.length == 0){let unique_id = code + "00" + (course_std.length + 1).toString(); return unique_id;};
+    //let unique_id = code + "00" + (course_std.length + 1).toString();
+    let uq_num = parseInt(course_std[course_std.length - 1].uniqueID.slice(-3)) + 1;
+    unique_id = code + "00" + uq_num.toString();
     return unique_id;
 }
 
@@ -40,7 +43,7 @@ function unique_num(course_in){
 app.get('/view', (req,res) => {
     const studentInfo = students.map((s) =>{
         return {
-            ID: s.ID,
+            ID: students.indexOf(s) + 1,
             name: s.name,
             course: s.course,
             level: s.level
@@ -52,7 +55,7 @@ app.get('/view', (req,res) => {
 //For displaying a single student record
 app.get('/view/:id', (req,res) => {
     const student = students.find((t) => t.uniqueID === req.params.id);
-    if(!student) return res.status(400).json({"message":"Not found"});
+    if(!student) return res.status(400).json({"message":"Not found and Please enter a valid UniqueId."});
     res.status(200).json(student);
 
 })
@@ -91,10 +94,10 @@ app.post('/add', (req,res) => {
 //Updating the full record of one student 
 app.put('/edit/:id', (req,res) => {
     const uq_id = req.params.id;
-    if(typeof uq_id !=== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
     const findID = students.findIndex((t) => t.uniqueID === uq_id);
-    if (findID === -1) return res.status(400).json({"message": "ID not found"});
-    const updateStudent = {ID:students[findID].ID, ...req.body};
+    if (findID === -1) return res.status(400).json({"message": "You have to enter your UniqueId."});
+    const uq_id_new = unique_num(req.body.course);
+    const updateStudent = {ID:students[findID].ID, ...req.body, uniqueID: uq_id_new};
     students[findID] = updateStudent;
     res.status(200).json(updateStudent);
 })
@@ -102,9 +105,12 @@ app.put('/edit/:id', (req,res) => {
 //Updating just part of one student record
 app.patch('/edit/:id', (req,res) => {
     const uq_id = req.params.id;
-    if(typeof uq_id !=== "string") return res.status(400).json({"message": "You have to enter your UniqueId."});
     const findID = students.findIndex((t) => t.uniqueID === uq_id);
     if(findID === -1) return res.status(400).json({"message": "student Not found"});
+    if(req.body.course){
+        const uq_id_new = unique_num(req.body.course);
+        req.body.uniqueID = uq_id_new;
+    }
     Object.assign(students[findID],req.body);
     res.status(200).json(students[findID]);
 })
@@ -113,9 +119,9 @@ app.patch('/edit/:id', (req,res) => {
 app.delete('/delete/:id', (req,res) => {
 const uq_id = req.params.id;
 const initialLen = students.length;
-students = students.filter((t) => t.uniqueID === uq_id);
-if (students.length !== initialLen) return res.status(404).json({error: "Not found"});
-res.status(204).send();
+students = students.filter((t) => t.uniqueID !== uq_id);
+if (students.length === initialLen) return res.status(404).json({error: "Not found and Please enter a valid UniqueId"});
+res.status(204).send(students);
 })
 
 //Listen middleware on port
