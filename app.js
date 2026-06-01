@@ -85,7 +85,7 @@ app.post('/add', (req,res) => {
 
 //Updating the full record of one student 
 app.put('/edit/:id', (req,res) => {
-    const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
+    const findID = students.findIndex((t) => t.uniqueID === req.params.id);
     if (findID === -1) return res.status(400).json({"message": "ID not found"});
     const updateStudent = {ID:students[findID].ID, ...req.body};
     students[findID] = updateStudent;
@@ -94,7 +94,7 @@ app.put('/edit/:id', (req,res) => {
 
 //Updating just part of one student reocrd
 app.patch('/edit/:id', (req,res) => {
-    const findID = students.findIndex((t) => t.ID === parseInt(req.params.id));
+    const findID = students.findIndex((t) => t.uniqueID === req.params.id);
     if(findID === -1) return res.status(400).json({"message": "student Not found"});
     Object.assign(students[findID],req.body);
     res.status(200).json(students[findID]);
@@ -102,13 +102,14 @@ app.patch('/edit/:id', (req,res) => {
 
 //Delete student
 app.delete('/delete/:id', (req,res) => {
-const Id = parseInt(req.params.id);
+const Id = req.params.id;
 const initialLen = students.length;
-students = students.filter((t) => t.ID === Id);
+students = students.filter((t) => t.uniqueID === Id);
 if (students.length !== initialLen) return res.status(404).json({error: "Not found"});
 res.status(204).send();
 })
 
+//Listen middleware on port
 const PORT = process.env.PORT || 3009;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
