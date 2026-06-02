@@ -1,51 +1,82 @@
 {
   "info": {
-    "_postman_id": "6c7e8199-daf4-45fa-89c0-a5b7a24c82b1",
-    "name": "Student API",
+    "_postman_id": "c65b49c4-352c-4096-826a-6380aedebec8",
+    "name": "Student_API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "55381151",
-    "_collection_link": "https://go.postman.co/collection/55381151-6c7e8199-daf4-45fa-89c0-a5b7a24c82b1?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/55381151-c65b49c4-352c-4096-826a-6380aedebec8?source=collection_link"
   },
   "item": [
     {
-      "name": "New Request",
+      "name": "GetAllStudents",
       "request": {
-        "method": "GET",
-        "header": []
-      },
-      "response": []
-    },
-    {
-      "name": "New Request",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n  \"age\": 28\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+        "auth": {
+          "type": "noauth"
         },
+        "method": "GET",
+        "header": [],
         "url": {
-          "raw": "http://localhost:3009/edit/1",
+          "raw": "http://localhost:3009/view",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "3009",
           "path": [
-            "edit",
-            "1"
+            "view"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "http://localhost:3009/add",
+      "name": "GetSingleStudent",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3009/view/26CS001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3009",
+          "path": [
+            "view",
+            "26CS001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetStudentBycourse",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3009/course/chemistry",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3009",
+          "path": [
+            "course",
+            "chemistry"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddStudent",
       "request": {
         "auth": {
           "type": "noauth"
@@ -54,7 +85,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"gender\": \"Male\",\r\n  \"age\": 22,\r\n  \"email\": \"johndoe@gmail.com\",\r\n  \"course\": \"Computer Science\",\r\n  \"level\": 300\r\n}",
+          "raw": "{\r\n  \"name\": \"Jane Marie\",\r\n  \"gender\": \"Female\",\r\n  \"age\": 22,\r\n  \"email\": \"jane@gmail.com\",\r\n  \"course\": \"Computer Science\",\r\n  \"level\": 200\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -76,7 +107,7 @@
       "response": []
     },
     {
-      "name": "http://localhost:3009/edit/1",
+      "name": "UpdateStudent_fully",
       "request": {
         "auth": {
           "type": "noauth"
@@ -85,7 +116,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Dellor Updated\",\r\n  \"gender\": \"Male\",\r\n  \"age\": 27,\r\n  \"email\": \"updated@gmail.com\",\r\n  \"course\": \"Computer Science\",\r\n  \"level\": 300\r\n}",
+          "raw": "{\r\n  \"name\": \"Updated Jane\",\r\n  \"gender\": \"Female\",\r\n  \"age\": 24,\r\n  \"email\": \"updatedjane@gmail.com\",\r\n  \"course\": \"Physics\",\r\n  \"level\": 300\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -93,7 +124,7 @@
           }
         },
         "url": {
-          "raw": "http://localhost:3009/edit/1",
+          "raw": "http://localhost:3009/edit/26CS001",
           "protocol": "http",
           "host": [
             "localhost"
@@ -101,14 +132,46 @@
           "port": "3009",
           "path": [
             "edit",
-            "1"
+            "26CS001"
           ]
         }
       },
       "response": []
     },
     {
-      "name": "http://localhost:3009/delete/1",
+      "name": "UpdateStudent_partially",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"level\": 400\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3009/edit/26CS001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3009",
+          "path": [
+            "edit",
+            "26CS001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteStudent",
       "request": {
         "auth": {
           "type": "noauth"
@@ -116,7 +179,7 @@
         "method": "DELETE",
         "header": [],
         "url": {
-          "raw": "http://localhost:3009/delete/1",
+          "raw": "http://localhost:3009/delete/26CS001",
           "protocol": "http",
           "host": [
             "localhost"
@@ -124,7 +187,7 @@
           "port": "3009",
           "path": [
             "delete",
-            "1"
+            "26CS001"
           ]
         }
       },
