@@ -27,7 +27,61 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "GetAllStudents",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/view",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "view"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "395"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"18b-zgpXPmU50XO6M+dz7mB7XjvW4IE\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 11:05:32 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"ID\": 1,\n        \"name\": \"Yusuf Isaiah\",\n        \"course\": \"Computer Science\",\n        \"level\": 200\n    },\n    {\n        \"ID\": 2,\n        \"name\": \"James Emerald\",\n        \"course\": \"Biology\",\n        \"level\": 200\n    },\n    {\n        \"ID\": 3,\n        \"name\": \"Kueli Victor\",\n        \"course\": \"Chemistry\",\n        \"level\": 200\n    },\n    {\n        \"ID\": 4,\n        \"name\": \"Hope Chibondwe\",\n        \"course\": \"Chemistry\",\n        \"level\": 100\n    },\n    {\n        \"ID\": 5,\n        \"name\": \"Okoye Chijioke Henry\",\n        \"course\": \"Physics\",\n        \"level\": 100\n    },\n    {\n        \"ID\": 6,\n        \"name\": \"Eiporn\",\n        \"course\": \"Mathematics\",\n        \"level\": 100\n    }\n]"
+        }
+      ]
     },
     {
       "name": "GetSingleStudent",
@@ -50,7 +104,62 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "GetSingleStudent",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/view/26CS001",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "view",
+                "26CS001"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "145"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"91-9wHN4FbYnfsPrZFlzYRYSuOv9jQ\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 11:07:46 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"ID\": 1,\n    \"name\": \"Yusuf Isaiah\",\n    \"gender\": \"Male\",\n    \"Age\": 25,\n    \"email\": \"isawhizi@gmail.com\",\n    \"course\": \"Computer Science\",\n    \"level\": 200,\n    \"uniqueID\": \"26CS001\"\n}"
+        }
+      ]
     },
     {
       "name": "GetStudentBycourse",
@@ -73,7 +182,62 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "GetStudentBycourse",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/course/chemistry",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "course",
+                "chemistry"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "158"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"9e-sTZfIWy0wv4/3s75TtabUt7KoDs\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 11:09:58 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"ID\": 1,\n        \"name\": \"Kueli Victor\",\n        \"email\": \"painterkueli23@gmail.com\",\n        \"level\": 200\n    },\n    {\n        \"ID\": 2,\n        \"name\": \"Hope Chibondwe\",\n        \"email\": \"chibondwehope@gmail.com\",\n        \"level\": 100\n    }\n]"
+        }
+      ]
     },
     {
       "name": "AddStudent",
@@ -104,7 +268,70 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "AddStudent",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Marie\",\r\n  \"gender\": \"Female\",\r\n  \"age\": 22,\r\n  \"email\": \"jane@gmail.com\",\r\n  \"course\": \"Computer Science\",\r\n  \"level\": 200\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3009/add",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "add"
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "141"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"8d-syA+HP1M4ihkJPM1i1ih0Pc56q4\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 11:12:42 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"ID\": 7,\n    \"name\": \"Jane Marie\",\n    \"gender\": \"Female\",\n    \"age\": 22,\n    \"email\": \"jane@gmail.com\",\n    \"course\": \"Computer Science\",\n    \"level\": 200,\n    \"uniqueID\": \"26CS002\"\n}"
+        }
+      ]
     },
     {
       "name": "UpdateStudent_fully",
@@ -136,7 +363,71 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "UpdateStudent_fully",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Updated Jane\",\r\n  \"gender\": \"Female\",\r\n  \"age\": 24,\r\n  \"email\": \"updatedjane@gmail.com\",\r\n  \"course\": \"Physics\",\r\n  \"level\": 300\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3009/edit/26CS001",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "edit",
+                "26CS001"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "141"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"8d-KnOkhDLEHLFivoQC/lOzoXWIPfM\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 11:15:19 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"ID\": 1,\n    \"name\": \"Updated Jane\",\n    \"gender\": \"Female\",\n    \"age\": 24,\n    \"email\": \"updatedjane@gmail.com\",\n    \"course\": \"Physics\",\n    \"level\": 300,\n    \"uniqueID\": \"26PH002\"\n}"
+        }
+      ]
     },
     {
       "name": "UpdateStudent_partially",
@@ -168,7 +459,71 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "UpdateStudent_partially",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"gender\": \"Female\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3009/edit/26CH002",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "edit",
+                "26CH002"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "147"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"93-60X/QZABIuOHgCKB7jsiGkkj7Vg\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 12:41:48 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"ID\": 4,\n    \"name\": \"Hope Chibondwe\",\n    \"gender\": \"Female\",\n    \"Age\": 26,\n    \"email\": \"chibondwehope@gmail.com\",\n    \"course\": \"Chemistry\",\n    \"level\": 100,\n    \"uniqueID\": \"26CH002\"\n}"
+        }
+      ]
     },
     {
       "name": "DeleteStudent",
@@ -191,7 +546,54 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "DeleteStudent",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3009/delete/26MA001",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3009",
+              "path": [
+                "delete",
+                "26MA001"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2e0-rsQSGBsctEo0y4qy7CaVuiMG+Rk\""
+            },
+            {
+              "key": "Date",
+              "value": "Tue, 02 Jun 2026 12:46:03 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
     }
   ]
 }
